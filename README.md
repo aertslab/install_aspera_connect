@@ -18,6 +18,14 @@ Aspera Connect is now available:
 ```
 
 
+Make sure that TCP and UDP port 33001 are open and accessible from the internet on the machine
+from which you run Aspera Connect, else you will see an error like this:
+
+```
+Session Stop  (Error: Client unable to connect to server (check UDP port and firewall))
+```
+
+
 ## Aspera Connect documentation
 
 [Aspera Connect documentation](https://downloads.asperasoft.com/en/documentation/8)
@@ -33,14 +41,16 @@ Aspera Connect is now available:
     -i ~/.aspera/connect/etc/asperaweb_id_dsa.openssh \
     -pQTk1 \
     -l 1000m \
-    dbtest@sra-download.ncbi.nlm.nih.gov:data/sracloud/traces/sra2/SRR/000297/SRR304976 \
-    SRR304976.sra
+    dbtest@sra-download.ncbi.nlm.nih.gov:data/sracloud/traces/sra46/SRR/005227/SRR5353377 \
+    SRR5353377.sra
 
-# Convert SRA file to FASTQ with fastq-dump (SRA toolkit).
-fastq-dump SRR304976.sra
+# Convert SRA file to gzipped FASTQ files with fastq-dump (SRA toolkit).
+fastq-dump --gzip --split-files SRR5353377.sra
 
-# Convert SRA file to FASTQ with fasterq-dump (SRA toolkit).
-fasterq-dump SRR304976.sra
+# Convert SRA file to FASTQ with fasterq-dump (SRA toolkit) and compress FASTQ files with gzip.
+fasterq-dump --split-files SRR5353377.sra
+gzip SRR5353377_1.fastq
+gzip SRR5353377_2.fastq
 ```
 [https://www.ncbi.nlm.nih.gov/books/NBK158899/](https://www.ncbi.nlm.nih.gov/books/NBK158899/)
 
@@ -48,14 +58,19 @@ fasterq-dump SRR304976.sra
 Download SRA file with prefetch (of [SRA toolkit](https://www.ncbi.nlm.nih.gov/sra/docs/toolkitsoft/) which uses ascp (`-t fasp`)
 
 ```bash
-# Use prefetch to download SRA file. 
-prefetch -v -t fasp SRR304976
+# Use prefetch (SRA toolkit) to download SRA file:
+#   - SRA files will be written to: $HOME/ncbi/public/sra/
+#   - If your HOME dir is constrained in space, make a symlink:
+#       ln -s /dir_with_lots_of_free_space/ncbi ${HOME}/ncbi
+prefetch -v -t fasp SRR5353377
 
-# Convert SRA file to FASTQ with fastq-dump.
-fastq-dump SRR304976
+# Convert SRA file to gzipped FASTQ files with fastq-dump (SRA toolkit).
+fastq-dump --gzip --split-files SRR5353377
 
-# Convert SRA file to FASTQ with fasterq-dump.
-fasterq-dump SRR304976
+# Convert SRA file to FASTQ with fasterq-dump (SRA toolkit) and compress FASTQ files with gzip.
+fastq-dump --split-files SRR5353377
+gzip SRR5353377_1.fastq
+gzip SRR5353377_2.fastq
 ```
 
 
