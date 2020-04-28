@@ -52,10 +52,9 @@ fasterq-dump --split-files SRR5353377.sra
 gzip SRR5353377_1.fastq
 gzip SRR5353377_2.fastq
 ```
-[https://www.ncbi.nlm.nih.gov/books/NBK158899/](https://www.ncbi.nlm.nih.gov/books/NBK158899/)
+[Downloading data from the SRA website](https://www.ncbi.nlm.nih.gov/books/NBK158898/)
 
-
-Download SRA file with prefetch (of [SRA toolkit](https://www.ncbi.nlm.nih.gov/sra/docs/toolkitsoft/) which uses ascp (`-t fasp`)
+Download SRA file with prefetch (of [SRA toolkit](https://ncbi.github.io/sra-tools/install_config.html) which uses ascp (`-t fasp`)
 
 ```bash
 # Use prefetch (SRA toolkit) to download SRA file:
