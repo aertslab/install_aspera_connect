@@ -67,7 +67,7 @@ prefetch -v -t fasp SRR5353377
 fastq-dump --gzip --split-files SRR5353377
 
 # Convert SRA file to FASTQ with fasterq-dump (SRA toolkit) and compress FASTQ files with gzip.
-fastq-dump --split-files SRR5353377
+fasterq-dump --split-files SRR5353377
 gzip SRR5353377_1.fastq
 gzip SRR5353377_2.fastq
 ```
